@@ -1,5 +1,5 @@
 applications:
-- name: educama
+- name: educama-travis-ci
   path: target/showcase-@project.version@.jar
   memory: 512M
   buildpack: java_buildpack
