@@ -1,6 +1,15 @@
 language: java
 jdk:
-- oraclejdk8
+  - oraclejdk8
+before_install:
+  - chmod +x *.sh
+before_script:
+  - source ./start-xvfb.sh
+script: 
+  # Overwrite default "./mvnw test" so that the integration tests are executed as well.
+  - ./mvnw verify
+after_success:
+- ./upload-serenity-reports.sh
 deploy:
   provider: cloudfoundry
   api: https://api.ng.bluemix.net
@@ -11,3 +20,5 @@ deploy:
   space: dev
   on:
     repo: schmolli1/Showcase
+addons:
+  firefox: "42.0"
